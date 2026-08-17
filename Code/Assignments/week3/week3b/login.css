@@ -1,0 +1,71 @@
+body{
+    background-image: url("Fashion3.jpg");
+    background-position: 100px -80px;
+    background-size: 80%;
+    background-color: beige;
+    background-repeat: no-repeat;
+}
+.header{
+    text-align: center;
+    color: #9D7945;
+}
+.pages{
+    justify-content:center;
+    margin-left: 15%;
+    margin-right:5%;
+    padding: 2em;
+    color:#fe9e16;
+    text-decoration: none;
+}
+.pages:hover{
+    color: #ad6704;
+    font-size: 20px;
+}
+#form{
+    margin-left:30%;
+    margin-right: 30%;
+    margin-top: 4%;
+    color: #804200;
+}
+#fieldset{
+    padding-block: 4em;
+    border-color: #9D7945;
+    border-radius: 2em;
+}
+.input{
+    border-color: #f3d5b4;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+.space{
+    margin-left:25%;
+}
+
+#footer{
+    margin-left: 44%;
+    margin-top: 3em;
+    padding: 8px;
+    width: 6em;
+    border-radius: 1em;
+    border-color:#f3d5b4;
+    background-color: #f3d5b4;
+    color: #804200;
+    cursor: pointer;
+}
+#footer:hover, #signup:hover{
+    background-color: #804200;
+    color:#f3d5b4;
+    width: 8em;
+    padding: 10px;
+    border-color:#804200;
+}
+#signup{
+    margin-top: 3em;
+    padding: 8px;
+    width: 6em;
+    border-radius: 1em;
+    border-color:#f3d5b4;
+    background-color: #f3d5b4;
+    color: #804200;
+    cursor: pointer;
+}
