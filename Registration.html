@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account | Registration</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Login.css">
+</head>
+
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card signup-box">
+            <div class="card-header">
+                <div class="icon-badge">✨</div>
+                <h1>Create Account</h1>
+                <p class="subtitle">It's free and only takes a minute</p>
+            </div>
+
+            <form id="signupForm" class="auth-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="fname" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" name="lastname" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pnumber">Phone Number</label>
+                        <input type="tel" id="pnumber" name="pnumber" placeholder="+1 (555) 000-0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select name="gender" id="gender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date Of Birth</label>
+                        <input type="date" name="dob" id="dob" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fcolor">Favourite Color</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" name="fcolor" id="fcolor" value="#00f2fe" required>
+                        <span class="color-preview-text" id="colorText">#00F2FE</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" name="password" id="password" placeholder="••••••••" required>
+                        <button type="button" class="btn-toggle-pw" id="togglePw"
+                            aria-label="Toggle password visibility">👁️</button>
+                    </div>
+                    <!-- Password Strength Meter -->
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                    <div class="strength-label" id="strengthLabel">Password strength</div>
+                </div>
+
+                <div class="terms-text">
+                    By clicking Sign Up, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                        Policy</a>.
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span>Create Account 🚀</span>
+                </button>
+                <div class="form-error-msg" id="errorMsg"></div>
+            </form>
+
+            <div class="card-footer">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password Visibility Toggle
+        const passwordInput = document.getElementById('password');
+        const togglePwBtn = document.getElementById('togglePw');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthLabel = document.getElementById('strengthLabel');
+        const fcolor = document.getElementById('fcolor');
+        const colorText = document.getElementById('colorText');
+
+        togglePwBtn.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePwBtn.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+
+        // Color Picker Preview
+        fcolor.addEventListener('input', (e) => {
+            colorText.textContent = e.target.value.toUpperCase();
+        });
+
+        // Password Strength Calculation
+        passwordInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            let score = 0;
+            if (val.length >= 6) score += 25;
+            if (val.length >= 10) score += 25;
+            if (/[0-9]/.test(val)) score += 25;
+            if (/[^A-Za-z0-9]/.test(val)) score += 25;
+
+            strengthBar.style.width = `${score}%`;
+            if (score <= 25) {
+                strengthBar.style.background = '#ef4444';
+                strengthLabel.textContent = 'Weak Password';
+            } else if (score <= 75) {
+                strengthBar.style.background = '#f59e0b';
+                strengthLabel.textContent = 'Medium Strength';
+            } else {
+                strengthBar.style.background = '#10b981';
+                strengthLabel.textContent = 'Strong Password!';
+            }
+        });
+
+        // Form Submit & LocalStorage Registration
+        const signupForm = document.getElementById('signupForm');
+        const errorMsg = document.getElementById('errorMsg');
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            errorMsg.textContent = '';
+
+            const fname = document.getElementById('fname').value.trim();
+            const lastname = document.getElementById('lastname').value.trim();
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const pnumber = document.getElementById('pnumber').value.trim();
+            const gender = document.getElementById('gender').value;
+            const dob = document.getElementById('dob').value;
+            const color = fcolor.value;
+            const password = passwordInput.value;
+
+            if (!fname || !lastname || !email || !pnumber || !gender || !dob || !password) {
+                errorMsg.textContent = 'Please fill out all required fields.';
+                return;
+            }
+
+            // Get existing users from localStorage
+            let users = JSON.parse(localStorage.getItem('auth_users') || '[]');
+            const existingUser = users.find(u => u.email === email);
+
+            if (existingUser) {
+                errorMsg.textContent = 'An account with this email already exists!';
+                return;
+            }
+
+            const newUser = {
+                fname,
+                lastname,
+                email,
+                pnumber,
+                gender,
+                dob,
+                color,
+                password
+            };
+
+            users.push(newUser);
+            localStorage.setItem('auth_users', JSON.stringify(users));
+            localStorage.setItem('current_user', JSON.stringify(newUser));
+
+            // Redirect to login or success
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+
+</html>

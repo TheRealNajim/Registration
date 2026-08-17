@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="left">
+        <div id="logo-div">
+            <img src="Image1.png" alt="" id="logo-img">
+            <div id="logo-text">
+                <h1>COUTURIER M's GRANDEUR</h1>
+                <p>Desiginer Extraordinaire</p>
+            </div>
+        </div>
+    </div>
+    <div id="right">
+        <img src="" alt="" id="logo">
+        <h1>WELCOME TO CMG</h1>
+        <p class="text">This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. <br> Sign up now to get started.</p>
+        <p class="text">You know you want to</p>
+        <form action="" method="post">
+            <h2>Let's do this!</h2>
+            <div>
+                <div>
+                    <label for="firstName">First Name </label>
+                    <input type="text" name="firstName" class="blue" placeholder="Muinat" required>
+                </div>
+                <div>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" class="blue" placeholder="Ajadi" required>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="phone" class="blue" placeholder="+234-000-0000-000" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="blue" placeholder="cmg@gmail.com" required>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="Gender">Gender</label>
+                    <select name="Gender" id="Gender" class="blue" required>
+                        <option value="select">Select a gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="DOB">Date of Birth</label>
+                    <input type="date" class="blue" required>
+                </div>
+            </div>
+            <div>
+                <label for="color">Favourite Color</label>
+                <input type="color" name="color" id="color" class="blue" required>
+            </div>
+            <div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="blue" placeholder="minimum of 8 characters" required>
+                </div>
+                <div>
+                    <label for="cPassword">Confirm Password</label>
+                    <input type="password" name="cPassword" class="blue" placeholder="minimum of 8 characters" required>
+                </div>
+            </div>
+        </form>
+        <div id="button">
+            <a href="success.html">
+                <input type="submit" name="submit" id="submit" value="Create Account">
+            </a>
+            <p class="login">Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
